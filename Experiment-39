@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char cipher[500];
+ char plain[500];
+ int count[26] = {0};
+ int i, j, max, pos;
+ int key;
+ printf("Enter ciphertext: ");
+ scanf(" %[^\n]", cipher);
+ for(i = 0; cipher[i] != '\0'; i++)
+ {
+ if(cipher[i] >= 'A' && cipher[i] <= 'Z')
+ count[cipher[i] - 'A']++;
+ }
+ max = count[0];
+ pos = 0;
+ for(i = 1; i < 26; i++)
+ {
+ if(count[i] > max)
+ {
+ max = count[i];
+ pos = i;
+ }
+ }
+ key = (pos - 4 + 26) % 26;
+ printf("\nMost frequent ciphertext letter: %c\n", pos + 'A');
+printf("Estimated key: %d\n", key);
+ for(i = 0; cipher[i] != '\0'; i++)
+ {
+ if(cipher[i] >= 'A' && cipher[i] <= 'Z')
+ {
+ plain[i] = ((cipher[i] - 'A' - key + 26) % 26) + 'A';
+ }
+ else
+ {
+ plain[i] = cipher[i];
+ }
+ }
+ plain[i] = '\0';
+ printf("Possible plaintext: %s\n", plain);
+ return 0;
+}
