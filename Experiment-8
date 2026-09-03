@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char keyword[30], plaintext[100], cipher[26];
+    int used[26] = {0};
+    int i, j = 0;
+
+    printf("Enter Keyword: ");
+    scanf("%s", keyword);
+
+    // Convert keyword to uppercase and remove duplicates
+    for(i = 0; keyword[i] != '\0'; i++)
+    {
+        keyword[i] = toupper(keyword[i]);
+
+        if(keyword[i] >= 'A' && keyword[i] <= 'Z')
+        {
+            int index = keyword[i] - 'A';
+
+            if(!used[index])
+            {
+                cipher[j++] = keyword[i];
+                used[index] = 1;
+            }
+        }
+    }
+
+    // Add remaining letters
+    for(i = 0; i < 26; i++)
+    {
+        if(!used[i])
+        {
+            cipher[j++] = i + 'A';
+        }
+    }
+
+    printf("\nPlain Alphabet : ");
+    for(i = 0; i < 26; i++)
+        printf("%c ", 'A' + i);
+
+    printf("\nCipher Alphabet: ");
+    for(i = 0; i < 26; i++)
+        printf("%c ", cipher[i]);
+
+    printf("\n\nEnter Plaintext: ");
+    scanf(" %[^\n]", plaintext);
+
+    printf("Ciphertext: ");
+
+    for(i = 0; plaintext[i] != '\0'; i++)
+    {
+        if(isalpha(plaintext[i]))
+        {
+            char ch = toupper(plaintext[i]);
+            printf("%c", cipher[ch - 'A']);
+        }
+        else
+        {
+            printf("%c", plaintext[i]);
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
