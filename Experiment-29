@@ -1,0 +1,9 @@
+#include <stdio.h>
+int main()
+{
+ printf("SHA-3-1024 uses rate=1024 bits and capacity=576 bits.\n");
+ printf("The 1024-bit input block is absorbed only into the rate portion.\n");
+ printf("If the permutation is ignored as specified, the capacity lanes remain zero forever.\n");
+ printf("Result: all capacity lanes never become non-zero (infinite/no finite block count).\n");
+ return 0;
+}
