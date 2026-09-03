@@ -1,0 +1,33 @@
+#include <stdio.h>
+long long egcd(long long a,long long b,long long*x,long long*y)
+{
+ if(!b)
+ {
+ *x=1;
+ *y=0;
+ return a;
+ }
+ long long x1,y1,g=egcd(b,a%b,&x1,&y1);
+ *x=y1;
+ *y=x1-(a/b)*y1;
+ return g;
+}
+long long modinv(long long a,long long m)
+{
+ long long x,y;
+ egcd(a,m,&x,&y);
+ x%=m;
+ if(x<0)x+=m;
+return x;
+}
+int main()
+{
+ long long n=3599,e=31,p,q,phi,d;
+ for(p=2;p*p<=n;p++)
+ if(n%p==0)break;
+ q=n/p;
+ phi=(p-1)*(q-1);
+ d=modinv(e,phi);
+ printf("p=%lld q=%lld\nphi(n)=%lld\nPrivate key d=%lld\n",p,q,phi,d);
+ return 0;
+}
