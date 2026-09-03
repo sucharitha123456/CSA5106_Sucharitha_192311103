@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main() {
+    char text[100];
+    int a, b, i;
+
+    printf("Enter plaintext: ");
+    scanf("%s", text);
+
+    printf("Enter value of a: ");
+    scanf("%d", &a);
+
+    printf("Enter value of b: ");
+    scanf("%d", &b);
+
+    if (a!=1&&a!=3&&a!=5&&a!=7&&a!=9&&a!=11&&a!=15&&a!=17&&a!=19&&a!=21&&a!=23&&a!=25) {
+        printf("Invalid value of a");
+        return 0;
+    }
+
+    printf("Ciphertext: ");
+
+    for(i=0;text[i]!='\0';i++) {
+        if(isalpha(text[i])) {
+            char ch=toupper(text[i]);
+            int p=ch-'A';
+            char c=((a*p+b)%26)+'A';
+            printf("%c",c);
+        } else
+            printf("%c",text[i]);
+    }
+
+    return 0;
+}
