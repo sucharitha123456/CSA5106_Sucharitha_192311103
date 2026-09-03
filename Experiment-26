@@ -1,0 +1,38 @@
+#include <stdio.h>
+long long gcd(long long a,long long b)
+{
+ while(b)
+ {
+ long long t=a%b;
+ a=b;
+ b=t;
+ }
+ return a;
+}
+long long eg(long long a,long long b,long long*x,long long*y)
+{
+ if(!b)
+ {
+ *x=1;
+ *y=0;
+ return a;
+ }
+ long long u,v,g=eg(b,a%b,&u,&v);
+ *x=v;
+ *y=u-(a/b)*v;
+ return g;
+}
+long long inv(long long a,long long m)
+{
+ long long x,y;
+ eg(a,m,&x,&y);
+ return (x%m+m)%m;
+}
+int main()
+{
+ long long p=61,q=53,e=17,n=p*q,phi=(p-1)*(q-1),d=inv(e,phi);
+ long long p2=67,q2=59,n2=p2*q2,phi2=(p2-1)*(q2-1),d2=inv(e,phi2);
+ printf("Old: n=%lld d=%lld\nNew: n=%lld d=%lld\n",n,d,n2,d2);
+ printf("New modulus/key pair is independent of leaked old private key.\n");
+return 0;
+}
