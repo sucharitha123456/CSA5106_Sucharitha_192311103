@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char cipher[200];
+ int freq[26]={0},i;
+ printf("Enter Cipher Text (Uppercase): ");
+ scanf("%s",cipher);
+ for(i=0;cipher[i]!='\0';i++)
+ {
+ if(cipher[i]>='A'&&cipher[i]<='Z')
+ freq[cipher[i]-'A']++;
+ }
+ printf("\nLetter Frequencies\n");
+ for(i=0;i<26;i++)
+ if(freq[i]!=0)
+ printf("%c : %d\n",'A'+i,freq[i]);
+ printf("\nPossible Plaintext (Approximation)\n");
+ printf("ETAOINSHRDLCUMWFGYPBVKJXQZ\n");
+ return 0;
+}
