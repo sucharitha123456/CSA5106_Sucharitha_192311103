@@ -1,0 +1,42 @@
+#include <stdio.h>
+long long mp(long long a,long long e,long long m)
+{
+ long long r=1;
+ while(e)
+ {
+ if(e&1)
+ r=r*a%m;
+ a=a*a%m;
+ e>>=1;
+ }
+ return r;
+}
+long long inv(long long a,long long m)
+{
+ long long t=0,newt=1,r=m,nr=a;
+ while(nr)
+ {
+ long long q=r/nr,z=t-q*newt;
+ t=newt;
+ newt=z;
+ z=r-q*nr;
+ r=nr;
+ nr=z;
+}
+ return (t%m+m)%m;
+}
+int main()
+{
+ long long p=23,q=11,g=2,x=3,h=9,k1=5,k2=7,r,s,sig;
+ r=mp(g,k1,p)%q;
+ s=inv(k1,q)*(h+x*r)%q;
+ printf("DSA: k=%lld -> (r,s)=(%lld,%lld)\n",k1,r,s);
+ r=mp(g,k2,p)%q;
+ s=inv(k2,q)*(h+x*r)%q;
+ printf("DSA: k=%lld -> (r,s)=(%lld,%lld)\n",k2,r,s);
+ long long n=143,d=103;
+ sig=mp(h,d,n);
+ printf("RSA signature=%lld\n",sig);
+ printf("DSA signatures differ because  k changes; RSA signature is deterministic here.\n");
+return 0;
+}
