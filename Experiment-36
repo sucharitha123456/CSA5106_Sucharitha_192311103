@@ -1,0 +1,39 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+ while(b != 0)
+ {
+ int t = b;
+ b = a % b;
+ a = t;
+ }
+ return a;
+}
+int main()
+{
+ char p[100], c[100];
+ int a, b, i, x, n;
+ printf("Enter uppercase plaintext: ");
+ scanf("%s", p);
+ printf("Enter value of a: ");
+ scanf("%d", &a);
+ printf("Enter value of b: ");
+ scanf("%d", &b);
+ if(gcd(a, 26) != 1)
+ {
+ printf("Invalid value of a.\n");
+ printf("a must be relatively prime to 26.\n");
+ return 0;
+}
+ n = 0;
+ while(p[n] != '\0')
+ {
+ x = p[n] - 'A';
+ c[n] = ((a * x) + b) % 26 + 'A';
+ n++;
+ }
+ c[n] = '\0';
+ printf("Ciphertext: %s\n", c);
+ return 0;
+}
+
