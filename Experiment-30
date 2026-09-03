@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdint.h>
+uint64_t sub64(uint64_t x)
+{
+ return (x&0x8000000000000000ULL)?(x<<1)^0x1B:(x<<1);
+}
+int main()
+{
+ unsigned long long in;
+ uint64_t L,K1,K2;
+ printf("Enter 64-bit L in hexadecimal: ");
+ scanf("%llx",&in);
+ L=(uint64_t)in;
+ K1=sub64(L);
+ K2=sub64(K1);
+printf("K1=%016llX\nK2=%016llX\n",(unsigned long long)K1,(unsigned long long)K2);
+ printf("For 128-bit CMAC the reduction constant is 0x87.\n");
+ return 0;
+}
+
