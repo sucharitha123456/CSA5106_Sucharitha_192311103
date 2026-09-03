@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main()
+{
+ printf("Playfair Cipher Key Space\n");
+ printf("\nTotal Possible Keys = 25!\n");
+ printf("Approximate Power of 2 = 2^84\n");
+ printf("\nConsidering equivalent keys,\n");
+ printf("Effective Unique Keys ˜ 2^82\n");
+ return 0;
+}
