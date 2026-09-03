@@ -1,0 +1,19 @@
+#include <string.h>
+int main()
+{
+ int key[2][2]={{9,4},{5,7}};
+ char pt[100];
+ int i,a,b,c,d;
+ printf("Enter Plaintext: ");
+ scanf("%s",pt);
+ printf("Cipher Text: ");
+ for(i=0;i<strlen(pt);i+=2)
+ {
+ a=pt[i]-'a';
+ b=pt[i+1]-'a';
+ c=(key[0][0]*a+key[0][1]*b)%26;
+ d=(key[1][0]*a+key[1][1]*b)%26;
+ printf("%c%c",c+'A',d+'A');
+ }
+ return 0;
+}
