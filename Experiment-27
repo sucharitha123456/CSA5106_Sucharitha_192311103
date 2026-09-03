@@ -1,0 +1,30 @@
+#include <stdio.h>
+long long power(long long a,long long e,long long n)
+{
+ long long r=1;
+ while(e)
+ {
+ if(e&1)
+ r=r*a%n;
+ a=a*a%n;
+ e>>=1;
+ }
+ return r;
+}
+int main()
+{
+ long long e=7,n=143;
+char s[100];
+ int i;
+ printf("Enter uppercase plaintext: ");
+ scanf("%99s",s);
+ printf("Ciphertext: ");
+ for(i=0;s[i];i++)
+ {
+ int m=s[i]-'A';
+ printf("%lld ",power(m,e,n));
+ }
+ printf("\nRepeated letters produce repeated ciphertext.\n");
+ return 0;
+}
+
