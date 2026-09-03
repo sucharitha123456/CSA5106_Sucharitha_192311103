@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+ char text[100];
+ char key;
+ char iv;
+ int i;
+ printf("Enter Plaintext: ");
+ scanf("%s",text);
+ printf("Enter Key Character: ");
+ scanf(" %c",&key);
+ printf("Enter IV Character: ");
+ scanf(" %c",&iv);
+ printf("\nCipher Text: ");
+ for(i=0;text[i]!='\0';i++)
+ {
+ text[i]=text[i]^iv;
+ text[i]=text[i]^key;
+ iv=text[i];
+ printf("%c",text[i]);
+ }
+ return 0;
+}
