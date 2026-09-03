@@ -1,0 +1,26 @@
+#include <stdio.h>
+long long gcd(long long a,long long b)
+{
+ while(b)
+ {
+ long long t=a%b;
+ a=b;
+ b=t;
+ }
+ return a;
+}
+int main()
+{
+ long long n,m1,m2,g;
+ printf("Enter RSA modulus n: ");
+ scanf("%lld",&n);
+ printf("Enter two plaintext/ciphertext values: ");
+ scanf("%lld%lld",&m1,&m2);
+ g=gcd(m1-m2,n);
+ if(g>1&&g<n)
+ printf("Common factor found: %lld\nRSA modulus is factorable.\n",g);
+ else
+ ial factor found.\n");
+ return 0;
+}
+
