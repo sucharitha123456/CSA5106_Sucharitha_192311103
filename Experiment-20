@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main() {
+ int blocks, errorBlock, i;
+ printf("Enter number of ciphertext blocks: ");
+ scanf("%d", &blocks);
+ printf("Enter block containing transmission error: ");
+ scanf("%d", &errorBlock);
+ printf("\nCBC error propagation:\n");
+ for (i = 1; i <= blocks; i++) {
+ if (i == errorBlock)
+ printf("P%d : Completely corrupted\n", i);
+ else if (i == errorBlock + 1)
+ printf("P%d : Corresponding bit is flipped\n", i);
+ else
+ printf("P%d : Unaffected\n", i);
+ }
+ printf("\nECB:\n");
+ for (i = 1; i <= blocks; i++) {
+ if (i == errorBlock)
+ printf("P%d : Corrupted\n", i);
+ else
+ printf("P%d : Unaffected\n", i);
+ }
+ return 0;
+}
