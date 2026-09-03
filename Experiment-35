@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+int main()
+{
+ char p[200],c[200],d[200];
+ int key[200],i,n;
+ printf("Enter uppercase plaintext: ");
+ scanf("%199s",p);
+ n=strlen(p);
+ srand((unsigned)time(NULL));
+ printf("Key: ");
+ for(i=0;i<n;i++)
+ {
+ key[i]=rand()%26;
+ printf("%d ",key[i]);
+ c[i]=(p[i]-'A'+key[i])%26+'A';
+ }
+ c[n]=0;
+ printf("\nCiphertext: %s\n",c);
+ for(i=0;i<n;i++)
+ d[i]=(c[i]-'A'-key[i]+26)%26+'A';
+ d[n]=0;
+ printf("Decrypted: %s\n",d);
+ return 0;
+}
