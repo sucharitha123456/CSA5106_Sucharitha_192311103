@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char ct[100];
+ int shift,i;
+ printf("Enter Cipher Text: ");
+ scanf("%s",ct);
+ printf("\nPossible Plaintexts:\n");
+ for(shift=0;shift<26;shift++)
+ {
+ printf("Shift %2d : ",shift);
+ for(i=0;i<strlen(ct);i++)
+ {
+char ch=ct[i];
+ if(ch>='A'&&ch<='Z')
+ printf("%c",((ch-'A'-shift+26)%26)+'A');
+ else
+ printf("%c",ch);
+ }
+ printf("\n");
+ }
+ return 0;
+}
