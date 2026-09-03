@@ -1,0 +1,30 @@
+#include <stdio.h>
+long long modpow(long long a,long long e,long long p)
+{
+ long long r=1;
+ while(e)
+ {
+ if(e&1)
+ r=r*a%p;
+ a=a*a%p;
+ e>>=1;
+ }
+ return r;
+}
+int main()
+{
+ long long q,a,xa,xb,ya,yb,ka,kb;
+  printf("Enter public q and a: ");
+ scanf("%lld%lld",&q,&a);
+ printf("Enter Alice and Bob private keys: ");
+ scanf("%lld%lld",&xa,&xb);
+ ya=modpow(a,xa,q);
+ yb=modpow(a,xb,q);
+ ka=modpow(yb,xa,q);
+ kb=modpow(ya,xb,q);
+ printf("Alice public=%lld Bob public=%lld\n",ya,yb);
+ printf("Alice key=%lld Bob key=%lld\n",ka,kb);
+ printf(ka==kb?"Key exchange successful.\n":"Key mismatch.\n");
+ return 0;
+}
+
